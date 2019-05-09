@@ -23,7 +23,7 @@ public class TopTrackViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 listener.onTrackClick(getAdapterPosition());
+                listener.onTrackClick(getAdapterPosition());
             }
         });
 

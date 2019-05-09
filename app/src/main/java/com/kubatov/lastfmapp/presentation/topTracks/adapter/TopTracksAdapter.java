@@ -18,8 +18,8 @@ import java.util.List;
 
 public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<TrackEntity> mTracks;
     Context context;
+    private ArrayList<TrackEntity> mTracks;
     private TopTrackViewHolder.TopTrackClickListener mListener;
 
 
@@ -28,8 +28,8 @@ public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ArrayList<TrackEntity> mTracks,
             TopTrackViewHolder.TopTrackClickListener mListener
     ) {
-        this.mTracks = mTracks;
         this.context = context;
+        this.mTracks = mTracks;
         this.mListener = mListener;
     }
 
@@ -48,18 +48,11 @@ public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         topTrackViewHolder.mTextView.setText(trackEntity.getArtist().getName());
         Log.d("ogogo", "artist " + trackEntity.getImage());
 
-        //Picasso.get().load((trackEntity.getImage().get(3).getUrl())).into(((TopTrackViewHolder) viewHolder).imageView);
-        String url = "https://cdn.myanimelist.net/images/characters/5/302701.jpg";
-
-//        Glide
-//                .with(context)
-//                .load(trackEntity.getImage().get(2).getUrl())
-//                .into(((TopTrackViewHolder) viewHolder).imageView);
-
         Glide
                 .with(context)
-                .load(url)
-                .into(((TopTrackViewHolder) viewHolder).imageView);
+                .load(trackEntity.getImage().get(2).getUrl())
+                .into(topTrackViewHolder.imageView);
+
     }
 
     @Override

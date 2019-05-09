@@ -1,18 +1,19 @@
 package com.kubatov.lastfmapp.presentation.topArtist;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import com.kubatov.lastfmapp.R;
 import com.kubatov.lastfmapp.entities.ArtistEntity;
+import com.kubatov.lastfmapp.presentation.artist.ArtistActivity;
 import com.kubatov.lastfmapp.presentation.topArtist.adapter.TopArtistAdapter;
 import com.kubatov.lastfmapp.presentation.topArtist.adapter.TopArtistViewHolder;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import core.mvp.CoreMvpFragment;
 
 
@@ -22,7 +23,7 @@ public class TopArtistsFragment
 
     TopArtistAdapter mAdapter;
     RecyclerView recyclerView;
-    private TopArtistViewHolder.TopArtistClickListener mListener;
+    private ArrayList<ArtistEntity> artists;
 
     public static TopArtistsFragment newInstance(){
         TopArtistsFragment artistsFragment = new TopArtistsFragment();
@@ -33,7 +34,27 @@ public class TopArtistsFragment
     protected void initView(View view) {
         recyclerView = view.findViewById(R.id.artist_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new TopArtistAdapter(getContext(), new ArrayList<ArtistEntity>(), mListener);
+        mAdapter = new TopArtistAdapter(getContext(), new ArrayList<ArtistEntity>(), new TopArtistViewHolder.TopArtistClickListener() {
+            @Override
+            public void onArtistClick(int position) {
+                if (presenter != null) {
+                    presenter.onArtistClick(position);
+                }
+                Intent intent = new Intent(getContext(), ArtistActivity.class);
+                intent.putExtra("artist", artists);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onShareClick(int position) {
+
+            }
+
+            @Override
+            public void onBookmarkClick(int position) {
+
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 

@@ -17,15 +17,14 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <activity android:name=".presentation.topArtist.TopArtistActivity">
-
-        </activity>
-        <activity android:name=".presentation.artist.ArtistActivity" />
-        <activity android:name=".presentation.topTracks.TopTracksActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+        </activity>
+        <activity android:name=".presentation.tracks.TracksActivity"/>
+        <activity android:name=".presentation.artist.ArtistActivity" />
+        <activity android:name=".presentation.topTracks.TopTracksActivity">
         </activity>
         <activity
             android:name=".presentation.MainActivity"
