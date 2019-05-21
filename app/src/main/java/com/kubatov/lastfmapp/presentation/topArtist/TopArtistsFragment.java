@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
 import com.kubatov.lastfmapp.R;
 import com.kubatov.lastfmapp.entities.ArtistEntity;
 import com.kubatov.lastfmapp.presentation.artist.ArtistActivity;
@@ -19,11 +17,10 @@ import core.mvp.CoreMvpFragment;
 
 public class TopArtistsFragment
         extends CoreMvpFragment<ITopArtistContract.Presenter>
-        implements ITopArtistContract.View{
+        implements ITopArtistContract.View, TopArtistViewHolder.TopArtistClickListener{
 
     TopArtistAdapter mAdapter;
     RecyclerView recyclerView;
-    private ArrayList<ArtistEntity> artists;
 
     public static TopArtistsFragment newInstance(){
         TopArtistsFragment artistsFragment = new TopArtistsFragment();
@@ -34,27 +31,7 @@ public class TopArtistsFragment
     protected void initView(View view) {
         recyclerView = view.findViewById(R.id.artist_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new TopArtistAdapter(getContext(), new ArrayList<ArtistEntity>(), new TopArtistViewHolder.TopArtistClickListener() {
-            @Override
-            public void onArtistClick(int position) {
-                if (presenter != null) {
-                    presenter.onArtistClick(position);
-                }
-                Intent intent = new Intent(getContext(), ArtistActivity.class);
-                intent.putExtra("artist", artists);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onShareClick(int position) {
-
-            }
-
-            @Override
-            public void onBookmarkClick(int position) {
-
-            }
-        });
+        mAdapter = new TopArtistAdapter(new ArrayList<>(),this);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -65,13 +42,11 @@ public class TopArtistsFragment
 
     @Override
     public void showArtist(List<ArtistEntity> artist) {
-
         for (ArtistEntity artists : artist) {
             Log.d("ololo", "onShow artist " + artists.toString());
             mAdapter.setArtists(artist);
             mAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override
@@ -80,6 +55,12 @@ public class TopArtistsFragment
 
     @Override
     public void showMessage(String message) {
+    }
+
+    @Override
+    public void onArtistClick(int position) {
+        if (presenter !=null){
+            presenter.onArtistClick(position);}
 
     }
 }

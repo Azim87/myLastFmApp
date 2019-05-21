@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class TrackEntity  {
-    private int id;
+
     @SerializedName("name")
     private String name;
 
@@ -24,10 +24,9 @@ public class TrackEntity  {
     private String listeners;
 
     @SerializedName("image")
-    private List<TrackImage> image;
+    private List<ArtistImage> image;
 
-    public TrackEntity(int id, String name, ArtistEntity artist, String url, String playcount, String listeners, List<TrackImage> image) {
-        this.id = id;
+    public TrackEntity(String name, ArtistEntity artist, String url, String playcount, String listeners, List<ArtistImage> image) {
         this.name = name;
         this.artist = artist;
         this.url = url;
@@ -36,13 +35,8 @@ public class TrackEntity  {
         this.image = image;
     }
 
-    public int getId() {
-        return id;
-    }
+    //region Getters/Setters
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -84,17 +78,23 @@ public class TrackEntity  {
         this.listeners = listeners;
     }
 
-    public List<TrackImage> getImage() {
+    public List<ArtistImage> getImage() {
         return image;
     }
 
-    public void setImage(List<TrackImage> image) {
+    public void setImage(List<ArtistImage> image) {
         this.image = image;
+    }
+
+    //endregion
+
+    public String getUniqueId(){
+        return name + " " + artist.getName();
     }
 
     @NonNull
     @Override
     public String toString() {
-        return id + " " + name + " " + artist + " " + image;
+        return  name + " " + artist + " " + image;
     }
 }

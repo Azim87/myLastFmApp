@@ -11,19 +11,26 @@
         android:layout_height="50dp" />
 
     <LinearLayout
-        android:padding="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <TextView
         android:text="text_view_track"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/design_default_color_primary_dark"
         android:id="@+id/text_view_track"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="-1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:text="text_view_track"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:id="@+id/text_view_track_track"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

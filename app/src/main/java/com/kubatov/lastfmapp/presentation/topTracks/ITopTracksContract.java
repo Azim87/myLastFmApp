@@ -11,12 +11,14 @@ public interface ITopTracksContract {
         void showTracks(List<TrackEntity> tracks);
         void openTrackDetails(TrackEntity track);
         void showMessage(String message);
+        void startRefresh();
+        void endRefresh();
     }
 
     interface Presenter extends ICoreMvpContract.Presenter<View> {
 
         void getTracks();
-        void onTrackClick(int position);
+        void onTracksClick(int position);
 
     }
 }

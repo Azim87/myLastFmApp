@@ -14,11 +14,23 @@ buildscript {
     }
 }
 
+
+
 allprojects {
     repositories {
         google()
         jcenter()
         
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.realm:realm-gradle-plugin:5.11.0"
     }
 }
 

@@ -9,5 +9,9 @@ public interface ITrackLocalStorage {
 
     void getTracks(ITrackRepository.TracksCallback callback);
 
+    void getArtistTopTracks(String artistName, ITrackRepository.TracksCallback artistCallback);
+
     void setTracks(List<TrackEntity> tracks);
+
+    TrackEntity getTrack();
 }

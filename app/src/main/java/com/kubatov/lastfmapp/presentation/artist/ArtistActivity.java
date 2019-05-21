@@ -2,6 +2,7 @@ package com.kubatov.lastfmapp.presentation.artist;
 
 
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import com.kubatov.lastfmapp.R;
 import com.kubatov.lastfmapp.entities.ArtistEntity;
@@ -14,15 +15,16 @@ import core.mvp.CoreMvpActivity;
 public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
         implements IArtistContract.View {
 
+    private TextView artistView;
 
     @Override
-    public void showArtist(ArrayList<ArtistEntity> artistEntity) {
+    public void showArtist(ArtistEntity artistEntity) {
 
     }
 
     @Override
     public void openArtistDetails(ArtistEntity artist) {
-
+        artistView.setText(artist.getName());
     }
 
     @Override
@@ -33,7 +35,7 @@ public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
     @Nullable
     @Override
     protected void initView() {
-
+        artistView = findViewById(R.id.artist_view);
     }
 
     @Nullable

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ITrackRepository {
 
-    TrackEntity getTrack(int id);
+    TrackEntity getTrack(String uniqueId);
 
     void getTracks(TracksCallback callback);
 

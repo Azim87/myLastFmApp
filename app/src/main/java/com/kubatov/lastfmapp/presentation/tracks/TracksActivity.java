@@ -1,32 +1,33 @@
 package com.kubatov.lastfmapp.presentation.tracks;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.widget.TextView;
 
+import com.kubatov.lastfmapp.App;
 import com.kubatov.lastfmapp.R;
-import com.kubatov.lastfmapp.entities.ArtistEntity;
-import com.kubatov.lastfmapp.presentation.artist.IArtistContract;
-
-import java.util.ArrayList;
+import com.kubatov.lastfmapp.entities.TrackEntity;
 
 import core.mvp.CoreMvpActivity;
-import core.mvp.ICoreMvpContract;
 
-public class TracksActivity extends CoreMvpActivity<IArtistContract.Presenter>
-        implements IArtistContract.View {
+public class TracksActivity extends CoreMvpActivity<ITracksContract.Presenter>
+        implements ITracksContract.View {
+    private static final String EXTRA_ID = "track_id";
 
+   private TextView trekview;
 
-    @Override
-    public void showArtist(ArrayList<ArtistEntity> artistEntity) {
-
+    //region Static
+    public static void start(Activity activity, String trackId){
+        Intent intent = new Intent(activity, TracksActivity.class);
+        intent.putExtra(EXTRA_ID, trackId);
+        activity.startActivity(intent);
     }
 
-    @Override
-    public void openArtistDetails(ArtistEntity artist) {
-
+    private static String getTrackId(Intent intent){
+        return intent.getStringExtra(EXTRA_ID);
     }
-
+//endregion
     @Override
     protected int getLayoutId() {
         return R.layout.activity_tracks;
@@ -35,12 +36,25 @@ public class TracksActivity extends CoreMvpActivity<IArtistContract.Presenter>
     @Nullable
     @Override
     protected void initView() {
-
+        trekview = findViewById(R.id.trek_view);
     }
 
     @Nullable
     @Override
-    protected IArtistContract.Presenter providePresenter() {
-        return null;
+    protected TracksPresenter providePresenter() {
+        return new TracksPresenter(
+                App.trackRepository,
+                getTrackId(getIntent())
+        );
+    }
+
+    @Override
+    public void showTracks(TrackEntity trackEntity) {
+        trekview.setText(trackEntity.getArtist().getName());
+    }
+
+    @Override
+    public void openTrackDetails(TrackEntity tracks) {
+
     }
 }

@@ -5,9 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.kubatov.lastfmapp.R;
-import com.kubatov.lastfmapp.entities.TrackEntity;
 
 public class TopTrackViewHolder extends RecyclerView.ViewHolder {
     TextView mTextView;
@@ -30,11 +28,10 @@ public class TopTrackViewHolder extends RecyclerView.ViewHolder {
         mTextView = itemView.findViewById(R.id.text_view_track);
         mTextArtist = itemView.findViewById(R.id.text_view_track_track);
         imageView = itemView.findViewById(R.id.top_track_image_view);
+        itemView.setSelected(true);
     }
 
-    public  interface TopTrackClickListener {
+    public interface TopTrackClickListener {
         void onTrackClick(int position);
-        void onShareClick(int position);
-        void onBookmarkClick(int position);
     }
 }

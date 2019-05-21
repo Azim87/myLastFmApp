@@ -24,7 +24,6 @@ public class TopArtistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private TopArtistViewHolder topArtistViewHolder;
 
     public TopArtistAdapter(
-            Context context,
             List<ArtistEntity> mArtist,
             TopArtistViewHolder.TopArtistClickListener listener
     ) {

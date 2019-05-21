@@ -9,25 +9,22 @@ import com.kubatov.lastfmapp.entities.TrackEntity;
 
 public class TopTracksActivity extends AppCompatActivity {
 
-  TrackEntity trackEntity;
-  private ITopTracksContract.Presenter mPresenter;
+    private ITopTracksContract.Presenter mPresenter;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    TopTracksFragment fragment = TopTracksFragment.newInstance();
+        TopTracksFragment fragment = TopTracksFragment.newInstance();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content, fragment)
+                .commit();
 
-    getSupportFragmentManager()
-            .beginTransaction()
-            .add(android.R.id.content, fragment)
-            .commit();
+        mPresenter = new TopTracksPresenter(App.trackRepository);
+        mPresenter.attachView(fragment);
 
-    mPresenter = new TopTracksPresenter(App.trackRepository);
-    mPresenter.attachView(fragment);
-    mPresenter.getTracks();
 
-    trackEntity = (TrackEntity) getIntent().getSerializableExtra("track");
-  }
+    }
 
 }

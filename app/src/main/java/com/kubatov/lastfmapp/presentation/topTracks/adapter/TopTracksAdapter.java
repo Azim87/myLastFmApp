@@ -45,14 +45,13 @@ public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         TrackEntity trackEntity = mTracks.get(i);
         TopTrackViewHolder topTrackViewHolder = (TopTrackViewHolder) viewHolder;
         topTrackViewHolder.mTextView.setText(trackEntity.getName());
-        topTrackViewHolder.mTextView.setText(trackEntity.getArtist().getName());
+        topTrackViewHolder.mTextArtist.setText(trackEntity.getArtist().getName());
         Log.d("ogogo", "artist " + trackEntity.getImage());
 
         Glide
                 .with(context)
                 .load(trackEntity.getImage().get(2).getUrl())
                 .into(topTrackViewHolder.imageView);
-
     }
 
     @Override

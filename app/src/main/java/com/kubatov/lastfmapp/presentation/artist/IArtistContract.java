@@ -9,7 +9,7 @@ public interface IArtistContract {
 
     interface View extends ICoreMvpContract.View<Presenter> {
 
-        void showArtist(ArrayList<ArtistEntity> artistEntity);
+        void showArtist(ArtistEntity artistEntity);
         void openArtistDetails(ArtistEntity artist);
     }
 
